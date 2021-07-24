@@ -1,0 +1,155 @@
+// Vars ---------------------------------------------------------------- //
+$basicLightbox__background: rgba(0, 0, 0, 0.8) !default;
+$basicLightbox__zIndex: 1000 !default;
+$basicLightbox__duration: 0.4s !default;
+$basicLightbox__timing: ease !default;
+
+// basicLightbox ------------------------------------------------------- //
+.basicLightbox {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: $basicLightbox__background;
+  opacity: 0.01; // Start with .01 to avoid the repaint that happens from 0 to .01
+  transition: opacity $basicLightbox__duration $basicLightbox__timing;
+  z-index: $basicLightbox__zIndex;
+  will-change: opacity;
+
+  &--visible {
+    opacity: 1;
+  }
+
+  &__placeholder {
+    max-width: 100%;
+    transform: scale(0.9);
+    transition: transform $basicLightbox__duration $basicLightbox__timing;
+    z-index: 1;
+    will-change: transform;
+
+    > img:first-child:last-child,
+    > video:first-child:last-child,
+    > iframe:first-child:last-child {
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      max-width: 95%;
+      max-height: 95%;
+    }
+
+    > video:first-child:last-child,
+    > iframe:first-child:last-child {
+      pointer-events: auto;
+    }
+
+    > img:first-child:last-child,
+    > video:first-child:last-child {
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &--img &__placeholder,
+  &--video &__placeholder,
+  &--iframe &__placeholder {
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  &--visible &__placeholder {
+    transform: scale(1);
+  }
+}
+
+body {
+  font-family: sans-serif;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.continer {
+  padding: 15px;
+  margin: 0 auto;
+}
+
+.search-form {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+input {
+  padding: 7px;
+  font-size: 22px;
+  width: 300px;
+  border-radius: 15px;
+  border: 2px solid black;
+  outline: none;
+  &:focus {
+    border-color: teal;
+  }
+}
+
+.gallery {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: -15px;
+  padding-left: 0;
+}
+
+.gallery-item {
+  width: calc((100% - 90px) / 3);
+  margin: 15px;
+  text-align: center;
+  display: flex;
+  flex-grow: 1;
+}
+
+.photo-card {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+  background-color: teal;
+  width: 100%;
+}
+
+.photo-wrapper {
+  height: 350px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.stats {
+  display: inline-flex;
+  color: white;
+}
+
+.stats-item {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-right: 20px;
+  }
+}
+
+.material-icons {
+  margin-right: 5px;
+}
