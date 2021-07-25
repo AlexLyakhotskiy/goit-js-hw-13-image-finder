@@ -4,16 +4,14 @@ export default class ApiService {
     this.page = 1;
   }
 
-  fetchArticles() {
+  async fetchArticles() {
     const apiKey = '22632103-559b096d748294a4f3f26d1f6';
     const url = `https://pixabay.com/api/?image_type=photo&orientation=horizontal&q=${this.searchQuery}&page=${this.page}&per_page=12&key=${apiKey}`;
 
-    return fetch(url)
-      .then(r => r.json())
-      .then(data => {
-        this.incrementPage();
-        return data;
-      });
+    const response = await fetch(url);
+    const data = await response.json();
+    this.incrementPage();
+    return data;
   }
 
   incrementPage() {

@@ -1,19 +1,23 @@
-// import { galleryEl } from '../index';
-// import ApiService from './js/apiService';
+import refs from './refs';
+import { apiService, renderImg } from '../index';
 
-// export default function infiniteLoad() {
-//   const observer = new IntersectionObserver((entries, observer) => {
-//     entries.forEach(item => {
-//       if (!item.isIntersecting) {
-//         return;
-//       }
+export default function infiniteLoad() {
+  const observer = new IntersectionObserver(imageObserve);
+  observer.observe(refs.gallery.lastElementChild);
 
-//       apiService.fetchArticles().then(data => {
-//         observer.unobserve(item.target);
-//         renderImg(data);
-//         observer.observe(galleryEl.lastElementChild);
-//       });
-//     });
-//   });
-//   observer.observe(galleryEl.lastElementChild);
-// }
+  function imageObserve(entries) {
+    entries.forEach(el => {
+      if (!el.isIntersecting) {
+        return;
+      }
+      addImages(el);
+    });
+  }
+
+  async function addImages(el) {
+    const data = await apiService.fetchArticles();
+    observer.unobserve(el.target);
+    renderImg(data);
+    observer.observe(refs.gallery.lastElementChild);
+  }
+}

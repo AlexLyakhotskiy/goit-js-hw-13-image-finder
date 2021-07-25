@@ -30,6 +30,7 @@
     "basiclightbox": "^5.0.4",
     "dist": "^0.1.2",
     "lodash.debounce": "^4.0.8",
+    "spin.js": "^4.1.0",
     "src": "^1.1.2"
   }
 }
