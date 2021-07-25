@@ -8,7 +8,6 @@ import ApiService from './js/apiService';
 import infiniteLoad from './js/infiniteScroll';
 import cardTpl from './templates/photoCard.hbs';
 
-import 'basicLightbox/dist/basicLightbox.min.css';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 import './sass/main.scss';
