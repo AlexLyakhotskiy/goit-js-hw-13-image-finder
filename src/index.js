@@ -44,13 +44,13 @@ async function responseImg(value) {
     if (!data.hits.length) {
       error({
         text: 'Nothing matches found.',
-        delay: 800,
+        delay: 1500,
       });
       return;
     }
     success({
-      text: `Your query: '${value}' was found.`,
-      delay: 1000,
+      text: `Your query: '${value}' was found ${data.totalHits} images.`,
+      delay: 2000,
     });
     renderImg(data);
     infiniteLoad();
